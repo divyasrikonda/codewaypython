@@ -1,0 +1,51 @@
+def show_menu():
+    print("COMMAND MENU")
+    print("1. Add task")
+    print("2. View tasks")
+    print("3. Mark task as completed")
+    print("4. Exit")
+    print()
+
+def add_task(tasks):
+    task_name = input("Enter task: ")
+    tasks["todo"].append(task_name)
+    print("Task added.")
+
+def view_tasks(tasks):
+    print("TASK LIST")
+    print("To Do:")
+    for task in tasks["todo"]:
+        print(task)
+    print("\nCompleted:")
+    for task in tasks["completed"]:
+        print(task)
+    print()
+
+def mark_completed(tasks):
+    task_to_mark = input("Enter task to mark as completed: ")
+    if task_to_mark in tasks["todo"]:
+        tasks["todo"].remove(task_to_mark)
+        tasks["completed"].append(task_to_mark)
+        print("Task marked as completed.")
+    else:
+        print("Task not found in To Do list.")
+
+def main():
+    tasks = {"todo": [], "completed": []}
+    while True:
+        show_menu()
+        choice = input("Enter command number: ")
+        if choice == "1":
+            add_task(tasks)
+        elif choice == "2":
+            view_tasks(tasks)
+        elif choice == "3":
+            mark_completed(tasks)
+        elif choice == "4":
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid command. Please try again.")
+
+if __name__ == "__main__":
+    main()
